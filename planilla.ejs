@@ -1,0 +1,86 @@
+<%
+Array.prototype.sum = function() { return this.reduce((x,y) => x + y); };
+Array.prototype.flat = function() { return [].concat(...this); };
+
+const title = Array.isArray(locals.title) ? locals.title : [locals.title];
+const subtitle = locals.subtitle;
+
+const flatCols = columns
+  .map(col => col.subcols ? col.subcols : [col])
+  .flat();
+
+const colWidth = (col) => col.subcols
+  ? col.subcols.map(s => s.width).sum()
+  : col.width;
+  
+const totalWidth = columns.map(c => colWidth(c)).sum();
+const widths = flatCols.map(col => (col.width / totalWidth) * 100);
+
+const tableHeader1 = columns.map(col => ({
+  title: col.title,
+  colspan: col.subcols ? col.subcols.length : 1,
+  rowspan: col.subcols ? 1 : 2,
+}));
+
+const tableHeader2 = columns.map(col => col.subcols).filter(x => x).flat();
+
+const dataColumns = flatCols.map(col => ({
+  autoinc: col.autoinc,
+  data: col.data,
+  text: col.text,
+  format: col.format
+}));
+
+const styleTag = (format) => 'style="'
+    + (format.center ? 'text-align:center;' : '')
+    + (format.bold ? 'font-weight:bold;' : '')
+    + '"';
+
+%><html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title><%= title[0] %><% title.slice(1).forEach(t => { %> - <%= t %><% }); %></title>
+<link href="planilla.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="head">
+<% if (title) { %>
+  <div class="head-left">
+    <strong><%= title[0] %></strong><% title.slice(1).forEach(t => { %> · <%= t %><% }); %>
+  </div>
+<% } %>
+<% if (subtitle) { %>
+  <div class="head-right">
+    <%= subtitle %>
+  </div>
+<% } %>
+</div>
+
+<div class="table">
+  <table>
+    <colgroup><% widths.forEach(w => { %>
+      <col style="width: <%= w %>%;">
+    <% }); %></colgroup>
+
+    <thead>
+      <tr><% tableHeader1.forEach(c => { %>
+        <th colspan="<%= c.colspan %>" rowspan="<%= c.rowspan %>"><%= c.title %></th>
+      <% }); %></tr>
+      <% if (tableHeader2.length > 0) { %><tr><% tableHeader2.forEach(c => { %>
+        <th class="subheader"><%= c.title %></th>
+      <% }); %></tr><% } %>
+    </thead>
+    <tbody><% let i = 1; rows.forEach(r => { %>
+      <tr><% dataColumns.forEach(c => { %>
+        <td<% if (c.format) { %> <%- styleTag(c.format) %><% } %>>
+          <% if (c.autoinc) { %><%= i _%>
+          <% } else if (c.data) { %><%= r[c.data] _%>
+          <% } else if (c.text) { %><%= c.text %><% } %>
+        </td>
+      <% }); %></tr>
+    <% i += 1; }); %></tbody>
+  </table>
+</div>
+
+</body>

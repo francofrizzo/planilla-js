@@ -1,0 +1,46 @@
+{
+  "title": [
+    "Paradigmas de Programación",
+    "Verano 2019"
+  ],
+  "columns": [
+    {
+      "title": "#",
+      "width": 1.3,
+      "autoinc": true,
+      "format": { "center": true, "bold": true }
+    },
+    {
+      "title": "Apellidos",
+      "width": 6.5,
+      "data": "apellido"
+    },
+    {
+      "title": "Nombres",
+      "width": 6.5,
+      "data": "nombre"
+    },
+    {
+      "title": "L.U.",
+      "width": 2.7,
+      "data": "lu",
+      "format": { "center": true }
+    },
+    {
+      "title": "Práctica",
+      "subcols": [
+        { "title": "Ej. 1", "width": 1.6 },
+        { "title": "Ej. 2", "width": 1.6 },
+        { "title": "Ej. 3", "width": 1.6 },
+        { "title": "Firma", "width": 5 }
+      ]
+    },
+    {
+      "title": "Teoría",
+      "subcols": [
+        { "title": "Firma", "width": 5 }
+      ]
+    }
+  ],
+  "rows": "estudiantes.csv"
+}

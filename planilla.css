@@ -1,0 +1,88 @@
+@page {
+  size: A4;
+  margin: .7cm;
+}
+
+@font-face {
+  font-family: officinaSans;
+  src: url(fonts/OfficinaSansStd-Book.otf) format("opentype");
+}
+@font-face {
+  font-family: officinaSans;
+  font-style: italic;
+  src: url(fonts/OfficinaSansStd-BookItalic.otf) format("opentype");
+}
+@font-face {
+  font-family: officinaSans;
+  font-weight: bold;
+  src: url(fonts/OfficinaSansStd-Bold.otf) format("opentype");
+}
+@font-face {
+  font-family: officinaSans;
+  font-weight: bold;
+  font-style: italic;
+  src: url(fonts/OfficinaSansStd-BoldItalic.otf) format("opentype");
+}
+
+html {
+    font-family: officinaSans;
+    font-size: 11pt;
+    line-height: 1.2em;
+}
+
+.head {
+    font-size: 1.15em;
+    height: 1.8em;
+}
+
+.head-left {
+    float: left;
+}
+
+.head-right {
+    float: right;
+}
+
+.table {
+    width: 100%;
+}
+
+.table table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.table th {
+    padding-bottom: .2em;
+    box-sizing: border-box;
+}
+
+.table .subheader {
+    font-weight: normal;
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: #eeeeee;
+}
+
+.table td {
+    border: .5pt solid black;
+    box-sizing: border-box;
+    height: .85cm;
+    text-align: left;
+    padding-bottom: 0;
+    padding-left: .4em;
+    padding-right: .4em;
+}
+
+.table td.center {
+    text-align: center;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.table td.bold {
+    font-weight: bold;
+}
