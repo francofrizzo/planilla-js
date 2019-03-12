@@ -3,8 +3,8 @@ configuración. Originalmente pensado para generar planillas de alumnxs para
 exámenes parciales.
 
 ## Requerimientos
-- [Node.js](https://weasyprint.org/).
-- [weasyprint](https://nodejs.org/en/).
+- [Node.js](https://nodejs.org/en/).
+- [weasyprint](https://weasyprint.org/).
 
 ## Instrucciones de instalación
 Es necesario ejecutar `npm install` para instalar las dependencias.
