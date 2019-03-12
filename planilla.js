@@ -26,7 +26,7 @@ function processOptions(options) {
 
   ['title', 'columns'].forEach((option) => {
     if (!options[option]) {
-      throw Error("Required option 'title' is missing");
+      throw Error(`Required option ${option} is missing`);
     }
   });
   
